@@ -1,0 +1,145 @@
+:root {
+    --bpi-color: #D11218;
+    --gcash-color: #0052FF;
+    --maribank-color: #EE4D2D;
+    --bg-color: #1e2026; /* Sleek dark grey background */
+    --card-bg: #ffffff;
+    --text-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 650px; /* Capped width optimized for horizontal row layouts */
+    width: 100%;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 12px;
+    font-size: 2.3rem;
+    color: #ffffff; /* White text for contrast against dark background */
+}
+
+header p {
+    margin-bottom: 45px;
+    color: #a0aec0; /* Light gray for smooth readability */
+    font-size: 1.1rem;
+}
+
+/* Row Layout Stack */
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Horizontal Row Card Design */
+.payment-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    padding: 25px 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+.payment-card:hover {
+    transform: translateX(5px); /* Subtle shift to the right on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Left-side accent brand borders for row view */
+.card-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+}
+
+.bpi .card-border { background-color: var(--bpi-color); }
+.gcash .card-border { background-color: var(--gcash-color); }
+.maribank .card-border { background-color: var(--maribank-color); }
+
+.bank-logo {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    flex-shrink: 0; /* Prevents QR from compressing this text container */
+    min-width: 160px; /* Secures dedicated horizontal width for long names */
+    text-align: left;
+}
+
+.bpi .bank-logo { color: var(--bpi-color); }
+.gcash .bank-logo { color: var(--gcash-color); }
+.maribank .bank-logo { color: var(--maribank-color); }
+
+.qr-container {
+    background-color: #ffffff;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Responsive Mobile Layout adjustment */
+@media (max-width: 480px) {
+    .payment-card {
+        flex-direction: column; /* Reverts to vertical stack on small mobile screens */
+        text-align: center;
+        gap: 20px;
+        padding: 30px 20px;
+    }
+    
+    /* Shifts accent border to the top for mobile stack view */
+    .card-border {
+        width: 100%;
+        height: 6px;
+        top: 0;
+        left: 0;
+    }
+    
+    .bank-logo {
+        text-align: center;
+        min-width: 0; /* Reset width parameters for standard center layout */
+    }
+
+    .payment-card:hover {
+        transform: translateY(-5px);
+    }
+}
